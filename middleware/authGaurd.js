@@ -4,7 +4,7 @@ const loginAuth=async(req,res,next)=>{
  const token=req.headers.token.split(' ')[1]
  try{
   
-  const decodeJwt=await jwt.verify(token, 'mynameiskhan')
+  const decodeJwt=await jwt.verify(token, process.env.JWT_PASS)
   req.userName=decodeJwt.userName
   req.sms="cool"
   next()

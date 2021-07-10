@@ -73,7 +73,7 @@ router.post('/login',async(req,res)=>{
        const passVal=await bcrypt.compare(password, userList[0].password);
   
        if(passVal){
-        const token = jwt.sign({ userName: userList[0].userName}, 'mynameiskhan',{ expiresIn: '1h' });
+        const token = jwt.sign({ userName: userList[0].userName}, process.env.JWT_PASS,{ expiresIn: '1h' });
         
         res.status(200).json({accessToken:token,sms:"succesful login"})
         console.log(token)
