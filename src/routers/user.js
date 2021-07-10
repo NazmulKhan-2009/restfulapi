@@ -19,7 +19,7 @@ try{
     const password=req.body.password
 
     const hashPass=await bcrypt.hash(password, 10);
-    // const token=jwt.sign({userName,userEmail,password},"mynameiskhan",{expiresIn:"60m"})
+    // const token=jwt.sign({userName,userEmail,password},process.env.JWT_PASS,{expiresIn:"60m"})
 
 
   //!verification mail
@@ -98,7 +98,7 @@ router.post('/login',async(req,res)=>{
 
 router.get("/authentification/activate/:info",async(req,res)=>{
   // res.send('ac verified')
-  const decodeJwt=jwt.verify(req.params.info,"mynameiskhan")
+  const decodeJwt=jwt.verify(req.params.info, process.env.JWT_PASS)
   console.log(decodeJwt)
   const {userName,userEmail,password}=decodeJwt
 
